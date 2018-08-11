@@ -1,0 +1,15 @@
+For DenseFlow algorithm, I used a tool located on the following github repo: https://github.com/yjxiong/dense_flow/tree/opencv-3.1 Readme there offers most of the info needed to install and use the tool. There are however a couple of additional things I would like to add that might be of help.
+
+First one is regarding the installation of OpenCV. While I cannot be exactly sure that this is needed, I believe I had problems when I did not install extra features of OpenCV, that are contained in opencv-contrib file. To be sure, this is exact cmake command that I used for OpenCV installation:
+    
+    cmake -D BUILD_DOCS=ON -D WITH_QT=ON -D WITH_XINE=ON -D WITH_OPENGL=ON -D WITH_TBB=ON -D WITH_OPENNI=ON -D BUILD_EXAMPLES=ON -D WITH_OPENCL=ON -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local/opencv-3.1.0 -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib-3.1.0/modules ..
+
+Secondly, while building the tool, I was required to use cmake like this:
+
+    sudo cmake -D OpenCV_DIR=/usr/local/opencv-3.1.0/share/OpenCV/ ..
+
+OpenCV_DIR needs to point to the folder containing OpenCVConfig.cmake. I believe default installation folder for OpenCV is /usr/local/, if you dont use CMAKE_INSTALL_PREFIX attribute. Also if OpenCV was installed with sudo, than you need to use sudo with this cmake command. 
+
+Lastly, one thing that I think should have been mentioned in the readme of the repo is that the output folder needs to be created before running the tool. In the example, that is folder "tmp".
+
+
